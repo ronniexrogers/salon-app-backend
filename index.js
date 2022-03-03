@@ -10,7 +10,7 @@ const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const { uploadFile, downloadFile } = require('./s3')
 
-app.set('port', 8000)
+app.set('port', 8001)
 const cors = require('cors')
 app.use(cors())
 
