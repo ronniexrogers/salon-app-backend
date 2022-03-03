@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }))
 //Routes
 
 app.get('/', function(req, res){
-  res.render('../frontend/src/App.js');
+  res.render('yo');
 });
 
 app.get('/images/:key', (req, res) => {
