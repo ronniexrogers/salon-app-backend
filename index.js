@@ -21,31 +21,27 @@ app.use(express.urlencoded({ extended: true }))
 
 //Routes
 
-app.get('/', function(req, res){
-  res.render('yo');
-});
-
-app.get('/images/:key', (req, res) => {
-    console.log(req.params)
-    const key = req.params.key
-    const readStream = getFileStream(key)
+// app.get('/images/:key', (req, res) => {
+//     console.log(req.params)
+//     const key = req.params.key
+//     const readStream = getFileStream(key)
   
-    readStream.pipe(res)
-  })
+//     readStream.pipe(res)
+//   })
   
-  app.post('/images', upload.single('image'), async (req, res) => {
-    const file = req.file
-    console.log(file)
+//   app.post('/images', upload.single('image'), async (req, res) => {
+//     const file = req.file
+//     console.log(file)
   
-    // apply filter
-    // resize 
+//     // apply filter
+//     // resize 
   
-    const result = await uploadFile(file)
-    await unlinkFile(file.path)
-    console.log(result)
-    const description = req.body.description
-    res.send({imagePath: `/images/${result.Key}`})
-  })
+//     const result = await uploadFile(file)
+//     await unlinkFile(file.path)
+//     console.log(result)
+//     const description = req.body.description
+//     res.send({imagePath: `/images/${result.Key}`})
+//   })
   
 
 //Controllers
