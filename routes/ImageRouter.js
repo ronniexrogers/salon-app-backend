@@ -21,6 +21,7 @@ router.get('/:key', (req, res) => {
   })
 
 router.post('/', upload.single('image'), async (req, res) => {
+  try {
   const file = req.file
   console.log(file)
   const result = await uploadFile(file)
@@ -32,7 +33,10 @@ router.post('/', upload.single('image'), async (req, res) => {
     description: req.body.description,
     type: req.body.type
   }
-  await new Image(photoData).save()
+  await new Image(photoData).save() }
+  catch(err) {
+    next(err)
+  }
 })
 
 router.get('/', async (req, res, next) => {

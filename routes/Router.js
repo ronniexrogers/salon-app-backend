@@ -21,7 +21,8 @@ router.get('/:key', (req, res) => {
     readStream.pipe(res)
   })
   
-router.post('/createAppointment', upload.single('image'), async (req, res) => {
+router.post('/createAppointment', upload.single('image'), async (req, res, next) => {
+  try {
     const file = req.file
     console.log(file)
     const result = await uploadFile(file)
@@ -34,7 +35,10 @@ router.post('/createAppointment', upload.single('image'), async (req, res) => {
       number: req.body.number,
       date: req.body.date
     }
-    await new Appointment(appointmentData).save()
+    await new Appointment(appointmentData).save() 
+  }catch(err) {
+      next(err)
+    }
   })
 
 router.get('/', async (req, res, next) => {

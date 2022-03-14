@@ -17,7 +17,7 @@ const res = require('express/lib/response')
         const res = await axios.post(url, qs.stringify(values), {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                "Access-Control-Allow-Origin": "https://denisse-app-backend.herokuapp.com/"
+                "Access-Control-Allow-Origin": "https://denisse-app-backend.herokuapp.com"
             },
         })
         return res.data
