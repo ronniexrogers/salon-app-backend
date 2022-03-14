@@ -1,9 +1,9 @@
 //Basic Config
-require('dotenv').config()
 const express = require('express')
 const axios = require('axios')
 require('./db/connection')
 const app = express()
+require('dotenv').config()
 
 const fs = require('fs')
 const util = require('util')
@@ -41,6 +41,6 @@ app.get('/', (req, res) => {
 
   
 //Start Server
-app.listen(5001, () => {
-    console.log(`✅ PORT: 5001} 🌟`)
+app.listen(process.env.PORT || 5001, () => {
+    console.log(`✅ PORT: ${app.get('port')} 🌟`)
 })
