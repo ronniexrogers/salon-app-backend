@@ -14,7 +14,7 @@ const res = require('express/lib/response')
         grant_type: 'authorization_code'
     }
     try {
-        const res = await axios.post(url, qs.stringify(values), {
+        const res = await axios.post(url, qs.stringify(values), { withCredentials: true }, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 "Access-Control-Allow-Origin": "https://denisse-app-backend.herokuapp.com"
