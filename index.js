@@ -14,10 +14,11 @@ const router = require('./routes/Router')
 const userRouter = require('./routes/UserRouter')
 const imageRouter = require('./routes/ImageRouter')
 
+
 const cors = require('cors')
 app.use(cors())
 
-
+app.set('port', process.env.PORT )
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
