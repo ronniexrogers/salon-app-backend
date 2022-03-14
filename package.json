@@ -10,6 +10,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "14.15.1"
+  },
   "dependencies": {
     "aws-sdk": "^2.1085.0",
     "axios": "^0.26.0",
