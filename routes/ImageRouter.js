@@ -7,6 +7,12 @@ const unlinkFile = util.promisify(fs.unlink)
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const Image = require('../models/Image')
+const cors = require('cors')
+
+var corsOptions = {
+  origin: 'https://denisse-app-backend.herokuapp.com',
+  optionsSuccessStatus: 200
+}
 
 
 const { google0authHandler } = require('../controllers/SessionController')
@@ -14,13 +20,13 @@ const { uploadFile, downloadFile } = require('../s3')
 const { default: axios } = require('axios')
 
 
-router.get('/:key', (req, res) => {
+router.get('/:key', cors(corsOptions), (req, res) => {
     const key = req.params.key
     const readStream = downloadFile(key)
     readStream.pipe(res)
   })
 
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/', cors(corsOptions), upload.single('image'), async (req, res) => {
   const file = req.file
   console.log(file)
   const result = await uploadFile(file)
@@ -35,7 +41,7 @@ router.post('/', upload.single('image'), async (req, res) => {
   await new Image(photoData).save()
 })
 
-router.get('/', async (req, res, next) => {
+router.get('/', cors(corsOptions), async (req, res, next) => {
   try{
       const allPhotos = await Image.find()
       res.json(allPhotos)

@@ -41,6 +41,6 @@ app.get('/', (req, res) => {
 
   
 //Start Server
-app.listen(process.env.PORT || 5001, () => {
-    console.log(`✅ PORT: ${app.get('port')} 🌟`)
+app.listen(5001, () => {
+    console.log(`✅ PORT: 5001} 🌟`)
 })
