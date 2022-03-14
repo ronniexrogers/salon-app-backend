@@ -1,10 +1,10 @@
 require('dotenv').config()
-import mongoose, { connection, connect } from "mongoose"
+const mongoose = require("mongoose")
 
 const mongoURI = process.env.DATABASE_URL
-const db = connection
+const db = mongoose.connection
 
-connect(mongoURI, {
+mongoose.connect(mongoURI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 })
@@ -16,4 +16,4 @@ db.on('open', () => {
     console.log('✅ mongo connection made!')
   })
 
-export default mongoose
+module.exports = mongoose
