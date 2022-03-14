@@ -11,8 +11,8 @@ router.post('/createUser', async (req, res) => {
       profilePicturePath: req.body.profilePicturePath,
     }
     await new User(userData).save()
-  }catch(err) {
-    next(err)
+  }    catch(error) {
+    console.error(error.response.data)
   }
   })
 

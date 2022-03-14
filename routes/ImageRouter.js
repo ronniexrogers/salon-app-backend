@@ -34,8 +34,8 @@ router.post('/', upload.single('image'), async (req, res) => {
     type: req.body.type
   }
   await new Image(photoData).save() }
-  catch(err) {
-    next(err)
+  catch(error) {
+    console.error(error.response.data)
   }
 })
 
