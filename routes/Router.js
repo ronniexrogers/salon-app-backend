@@ -8,12 +8,6 @@ const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const imageController = require('../controllers/imageController')
 const Appointment = require('../models/Appointment')
-const cors = require('cors')
-
-var corsOptions = {
-  origin: 'https://denisse-app-backend.herokuapp.com',
-  optionsSuccessStatus: 200
-}
 
 
 const { google0authHandler } = require('../controllers/SessionController')
@@ -21,13 +15,13 @@ const { uploadFile, downloadFile } = require('../s3')
 const { default: axios } = require('axios')
 
 
-router.get('/:key', cors(corsOptions), (req, res) => {
+router.get('/:key', (req, res) => {
     const key = req.params.key
     const readStream = downloadFile(key)
     readStream.pipe(res)
   })
   
-router.post('/createAppointment', cors(corsOptions), upload.single('image'), async (req, res) => {
+router.post('/createAppointment', upload.single('image'), async (req, res) => {
     const file = req.file
     console.log(file)
     const result = await uploadFile(file)
@@ -43,7 +37,7 @@ router.post('/createAppointment', cors(corsOptions), upload.single('image'), asy
     await new Appointment(appointmentData).save()
   })
 
-router.get('/', cors(corsOptions), async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try{
       const allAppointments = await Appointment.find()
       res.json(allAppointments)
@@ -52,7 +46,7 @@ router.get('/', cors(corsOptions), async (req, res, next) => {
   }
 })
 
-router.delete('/:id', cors(corsOptions), async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     const appointmentToDelete = await Appointment.findByIdAndDelete(req.params.id)
     console.log(appointmentToDelete)

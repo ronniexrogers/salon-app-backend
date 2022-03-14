@@ -14,8 +14,8 @@ const router = require('./routes/Router')
 const userRouter = require('./routes/UserRouter')
 const imageRouter = require('./routes/ImageRouter')
 
-const cors = require('cors')
-app.use(cors())
+// const cors = require('cors')
+// app.use(cors())
 
 
 app.use(express.json())
