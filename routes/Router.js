@@ -38,9 +38,9 @@ router.post('/createAppointment', upload.single('image'), async (req, res, next)
     // await new Appointment(appointmentData).save() 
     const newAppointment = await Appointment.create(appointmentData)
     res.status(201).json(newAppointment)
-  }catch(err) {
-      next(err)
-    }
+  }catch(error) {
+    console.error(error.response.data)
+  }
   })
 
 router.get('/', async (req, res, next) => {
