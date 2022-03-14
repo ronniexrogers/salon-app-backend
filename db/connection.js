@@ -1,11 +1,13 @@
 require('dotenv').config()
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 
 const mongoURI = process.env.DATABASE_URL
 const db = mongoose.connection
-console.log(mongoURI)
 
-mongoose.connect(mongoURI)
+mongoose.connect(mongoURI, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+})
 
 db.on('error', (err) => console.log(err.message + ' is Mongod not running?'))
 db.on('connected', () => console.log('mongo connected at your URI'))
