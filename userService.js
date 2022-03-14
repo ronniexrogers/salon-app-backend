@@ -5,6 +5,7 @@ const res = require('express/lib/response')
 
     const getGoogle0AuthTokens = async (code) => {
     const url = 'https://oauth2.googleapis.com/token'
+
     const values = {
         code,
         clientId: config.get('googleClientId'),
@@ -15,7 +16,8 @@ const res = require('express/lib/response')
     try {
         const res = await axios.post(url, qs.stringify(values), {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "Access-Control-Allow-Origin": "https://denisse-app-backend.herokuapp.com/"
             },
         })
         return res.data
