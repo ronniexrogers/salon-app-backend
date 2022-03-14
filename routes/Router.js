@@ -39,7 +39,7 @@ router.post('/createAppointment', upload.single('image'), async (req, res, next)
     const newAppointment = await Appointment.create(appointmentData)
     res.status(201).json(newAppointment)
   }catch(error) {
-    console.error(error.response.data)
+    console.error(error)
   }
   })
 
