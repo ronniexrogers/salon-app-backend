@@ -1,4 +1,5 @@
 //Basic Config
+require('dotenv').config()
 const express = require('express')
 const axios = require('axios')
 require('./db/connection')
