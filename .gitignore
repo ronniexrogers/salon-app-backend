@@ -1,2 +1,4 @@
 node_modules
 .env
+adl-s3-policy.json
+role-trust-policy.json

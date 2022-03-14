@@ -1,5 +1,6 @@
 //Basic Config
 const express = require('express')
+const axios = require('axios')
 require('./db/connection')
 const app = express()
 
@@ -8,45 +9,17 @@ const util = require('util')
 const unlinkFile = util.promisify(fs.unlink)
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
-const { uploadFile, downloadFile } = require('./s3')
+const router = require('./routes/Router')
+const userRouter = require('./routes/UserRouter')
+const imageRouter = require('./routes/ImageRouter')
 
-// app.set('port', 8001)
 const cors = require('cors')
 app.use(cors())
 
-//Middleware
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-
-//Routes
-
-// app.get('/images/:key', (req, res) => {
-//     console.log(req.params)
-//     const key = req.params.key
-//     const readStream = getFileStream(key)
-  
-//     readStream.pipe(res)
-//   })
-  
-//   app.post('/images', upload.single('image'), async (req, res) => {
-//     const file = req.file
-//     console.log(file)
-  
-//     // apply filter
-//     // resize 
-  
-//     const result = await uploadFile(file)
-//     await unlinkFile(file.path)
-//     console.log(result)
-//     const description = req.body.description
-//     res.send({imagePath: `/images/${result.Key}`})
-//   })
-  
-
-//Controllers
-const usersController = require('./controllers/usersController')
-app.use('/api/users/', usersController)
 
 app.use((err, req, res, next) => {
     const statusCode = res.statusCode || 500
@@ -54,12 +27,19 @@ app.use((err, req, res, next) => {
     res.status(statusCode).send(message)
 })
 
+app.use('/api/appointments', router)
+
+app.use('/api/users', userRouter)
+
+app.use('/api/salonPhotos', imageRouter)
+
+
 app.get('/', (req, res) => {
-    res.send('Im the backend');
-  });
+    res.send('Im the backend')
+  })
 
   
 //Start Server
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT || 5001, () => {
     console.log(`✅ PORT: ${app.get('port')} 🌟`)
 })

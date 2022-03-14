@@ -7,6 +7,10 @@ const bucketRegion = process.env.AWS_BUCKET_REGION
 const secretAccessKey = process.env.AWS_SECRET_KEY
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID
 
+const bucketParams = {
+    Bucket: bucketName
+}
+
 const s3 = new S3({
     bucketRegion,
     accessKeyId,
