@@ -14,6 +14,11 @@ const router = require('./routes/Router')
 const userRouter = require('./routes/UserRouter')
 const imageRouter = require('./routes/ImageRouter')
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 const cors = require('cors')
 app.use(cors())
@@ -42,9 +47,6 @@ app.get('/', (req, res) => {
 
   
 //Start Server
-// app.listen(process.env.PORT || 5001, () => {
-//     console.log(`✅ PORT: ${app.get('port')} 🌟`)
-// })
 app.listen(app.get('port'), () => {
 	console.log(`✅ PORT: ${app.get('port')} 🌟`)
 })
