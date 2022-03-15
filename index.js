@@ -12,6 +12,7 @@ const upload = multer({ dest: 'uploads/' })
 const router = require('./routes/Router')
 const userRouter = require('./routes/UserRouter')
 const imageRouter = require('./routes/ImageRouter')
+const path = require('path')
 
 const cors = require('cors')
 app.use(cors({origin: "*"}))
@@ -21,9 +22,9 @@ app.set('port', process.env.PORT )
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use(express.static(path.join(__dirname, '../frontend/build')))
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build'))
+app.use(express.static(path.join(__dirname, '../frontend/build/index.html')))
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
 })
 
 app.use((err, req, res, next) => {
