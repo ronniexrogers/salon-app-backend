@@ -4,7 +4,8 @@ const axios = require('axios')
 require('./db/connection')
 const app = express()
 require('dotenv').config()
-
+const cors = require('cors')
+app.use(cors())
 const fs = require('fs')
 const util = require('util')
 const unlinkFile = util.promisify(fs.unlink)
@@ -14,8 +15,6 @@ const router = require('./routes/Router')
 const userRouter = require('./routes/UserRouter')
 const imageRouter = require('./routes/ImageRouter')
 
-const cors = require('cors')
-app.use(cors())
 
 app.set('port', process.env.PORT )
 app.use(express.json())
