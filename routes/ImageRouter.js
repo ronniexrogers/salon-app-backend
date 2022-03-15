@@ -15,6 +15,7 @@ const { default: axios } = require('axios')
 
 
 router.get('/:key', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*")
     const key = req.params.key
     const readStream = downloadFile(key)
     readStream.pipe(res)
@@ -22,6 +23,7 @@ router.get('/:key', (req, res) => {
 
 router.post('/', upload.single('image'), async (req, res) => {
   try {
+  res.header("Access-Control-Allow-Origin", "*")
   const file = req.file
   console.log(file)
   const result = await uploadFile(file)
@@ -41,6 +43,7 @@ router.post('/', upload.single('image'), async (req, res) => {
 
 router.get('/', async (req, res, next) => {
   try{
+      res.header("Access-Control-Allow-Origin", "*")
       const allPhotos = await Image.find()
       res.json(allPhotos)
   } catch(err){
