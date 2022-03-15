@@ -2,7 +2,7 @@ require('dotenv').config()
 const fs = require('fs')
 const S3 = require('aws-sdk/clients/s3')
 
-const bucketName = process.env.AWS_BUCKET_NAME
+const bucketName = process.env.S3_BUCKET_NAME
 const bucketRegion = process.env.AWS_BUCKET_REGION
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID
