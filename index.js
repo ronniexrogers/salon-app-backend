@@ -14,9 +14,7 @@ const userRouter = require('./routes/UserRouter')
 const imageRouter = require('./routes/ImageRouter')
 
 const cors = require('cors')
-app.use(cors({
-    origin: "https://denisse-app-frontend.herokuapp.com",
-}))
+app.use(cors({origin: "*"}))
 
 
 app.set('port', process.env.PORT )
