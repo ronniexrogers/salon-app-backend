@@ -7,7 +7,7 @@ const bucketRegion = process.env.AWS_BUCKET_REGION
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID
 
-aws.config.update({
+AWS.config.update({
     secretAccessKey: secretAccessKey,
     accessKeyId: accessKeyId,
     region: bucketRegion
