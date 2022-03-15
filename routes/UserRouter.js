@@ -4,7 +4,6 @@ const User = require('../models/User')
 
 router.post('/createUser', async (req, res) => {
     try {
-      res.header("Access-Control-Allow-Origin", "*")
       const userData = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -20,7 +19,6 @@ router.post('/createUser', async (req, res) => {
 
 router.get('/:id', async (req, res, next) => {
     try{
-        res.header("Access-Control-Allow-Origin", "*")
         const user = await User.find({ googleId: req.params.id })
         res.json(user)
     } catch(err){

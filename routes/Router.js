@@ -16,7 +16,6 @@ const { default: axios } = require('axios')
 
 
 router.get('/:key', (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*")
     const key = req.params.key
     const readStream = downloadFile(key)
     readStream.pipe(res)
@@ -24,7 +23,6 @@ router.get('/:key', (req, res) => {
   
 router.post('/createAppointment', upload.single('image'), async (req, res, next) => {
   try {
-    res.header("Access-Control-Allow-Origin", "*")
     const file = req.file
     console.log(file)
     const result = await uploadFile(file)
@@ -45,7 +43,6 @@ router.post('/createAppointment', upload.single('image'), async (req, res, next)
 
 router.get('/', async (req, res, next) => {
   try{
-      res.header("Access-Control-Allow-Origin", "*")
       const allAppointments = await Appointment.find()
       res.json(allAppointments)
   } catch(err){
@@ -55,7 +52,6 @@ router.get('/', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
-    res.header("Access-Control-Allow-Origin", "*")
     const appointmentToDelete = await Appointment.findByIdAndDelete(req.params.id)
     console.log(appointmentToDelete)
     if (appointmentToDelete) {
