@@ -16,7 +16,8 @@ const res = require('express/lib/response')
     try {
         const res = await axios.post(url, qs.stringify(values), {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Access-Control-Allow-Origin': '*'
             },
         })
         return res.data
