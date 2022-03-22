@@ -13,12 +13,6 @@ const router = require('./routes/Router')
 const userRouter = require('./routes/UserRouter')
 const imageRouter = require('./routes/ImageRouter')
 const path = require('path')
-
-
-app.set('port', process.env.PORT)
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
 const cors = require('cors')
 const corsOptions ={
     origin:'*', 
@@ -26,6 +20,13 @@ const corsOptions ={
     optionSuccessStatus:200,
  }
 app.use(cors(corsOptions))
+
+
+app.set('port', process.env.PORT)
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+
 
 app.use((err, req, res, next) => {
     const statusCode = res.statusCode || 500
