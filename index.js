@@ -25,11 +25,6 @@ app.use(cors({
     })
 )
 
-app.use(express.static(path.join(__dirname, '../public')))
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public'))
-})
-
 app.use((err, req, res, next) => {
     const statusCode = res.statusCode || 500
     const message = err.message || 'Internal Server Error'
