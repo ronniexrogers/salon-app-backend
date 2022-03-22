@@ -13,6 +13,16 @@ const corsOptions = {
   }
 app.use(cors({ credentials: true }))
 
+app.set('port', process.env.PORT)
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.use((err, req, res, next) => {
+    const statusCode = res.statusCode || 500
+    const message = err.message || 'Internal Server Error'
+    res.status(statusCode).send(message)
+})
+
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
     // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -31,16 +41,6 @@ app.use(function (req, res, next) {
 
     // Pass to next layer of middleware
     next();
-});
-
-app.set('port', process.env.PORT)
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
-app.use((err, req, res, next) => {
-    const statusCode = res.statusCode || 500
-    const message = err.message || 'Internal Server Error'
-    res.status(statusCode).send(message)
 })
 
 app.use('/api/appointments', router)
