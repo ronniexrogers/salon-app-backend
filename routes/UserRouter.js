@@ -3,7 +3,6 @@ const router = express.Router()
 const User = require('../models/User')
 
 router.post('/createUser', async (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'https://denisse-morales.netlify.app');
     try {
       const userData = {
       firstName: req.body.firstName,
