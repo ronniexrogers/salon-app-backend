@@ -1,19 +1,12 @@
 //Basic Config
 const express = require('express')
-const axios = require('axios')
 require('./db/connection')
+const cors = require('cors')
 const app = express()
 require('dotenv').config()
-const fs = require('fs')
-const util = require('util')
-const unlinkFile = util.promisify(fs.unlink)
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
 const router = require('./routes/Router')
 const userRouter = require('./routes/UserRouter')
 const imageRouter = require('./routes/ImageRouter')
-const path = require('path')
-const cors = require('cors')
 const corsOptions = {
     origin: 'https://denisse-morales.netlify.app',
     optionsSuccessStatus: 200
@@ -28,7 +21,7 @@ app.use((err, req, res, next) => {
     const message = err.message || 'Internal Server Error'
     res.status(statusCode).send(message)
 })
-app.use(cors(corsOptions))
+app.use(cors({ credentials: true }))
 
 app.use('/api/appointments', router)
 
