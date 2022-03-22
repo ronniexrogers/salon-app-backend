@@ -14,11 +14,7 @@ const res = require('express/lib/response')
         grant_type: 'authorization_code'
     }
     try {
-        const res = await axios.post(url, qs.stringify(values), {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        })
+        const res = await axios.post(url, qs.stringify(values))
         return res.data
     }catch(err) {
         console.error(err, 'failed to fetch google 0auth tokens')
