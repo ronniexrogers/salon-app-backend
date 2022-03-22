@@ -4,9 +4,11 @@ const mongoose = require('../db/connection')
 const AppointmentSchema = new mongoose.Schema({
 	name: String,
     date: String,
+    time: String,
 	number: String,
     description: String,
-    imagePath: String
+    imagePath: String,
+    email: String
 })
 
 // instantiate the model, calling it "Image" and with the schema we just made

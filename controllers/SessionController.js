@@ -22,8 +22,8 @@ async function google0authHandler(req, res) {
 
     //redirect back to client
     }catch(err){
-        log(err, 'failed to authorize google user')
-        return res.redirect('https://denisse-app-frontend.herokuapp.com/')
+        console.log(err, 'failed to authorize google user')
+        return res.redirect('http://localhost:5000/')
     }
 
 }
