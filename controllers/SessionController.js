@@ -23,7 +23,7 @@ async function google0authHandler(req, res) {
     //redirect back to client
     }catch(err){
         console.log(err, 'failed to authorize google user')
-        return res.redirect('http://localhost:5000/')
+        return res.redirect('https://ronnie-rogers-capstone-backend.herokuapp.com/')
     }
 
 }
