@@ -22,13 +22,13 @@ const corsOptions = {
 app.set('port', process.env.PORT)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors(corsOptions))
 
 app.use((err, req, res, next) => {
     const statusCode = res.statusCode || 500
     const message = err.message || 'Internal Server Error'
     res.status(statusCode).send(message)
 })
+app.use(cors(corsOptions))
 
 app.use('/api/appointments', router)
 
