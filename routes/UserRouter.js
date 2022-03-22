@@ -3,7 +3,12 @@ const router = express.Router()
 const User = require('../models/User')
 const cors = require('cors')
 
-router.post('/createUser', cors(), async (req, res) => {
+const corsOptions = {
+  origin: 'https://denisse-morales.netlify.app',
+  optionsSuccessStatus: 200
+}
+
+router.post('/createUser', cors(corsOptions), async (req, res) => {
     try {
       const userData = {
       firstName: req.body.firstName,
