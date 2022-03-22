@@ -13,13 +13,8 @@ const router = require('./routes/Router')
 const userRouter = require('./routes/UserRouter')
 const imageRouter = require('./routes/ImageRouter')
 const path = require('path')
-const cors = require('cors')
-const corsOptions ={
-    origin:'*', 
-    credentials:true,//access-control-allow-credentials:true
-    optionSuccessStatus:200,
- }
-app.use(cors(corsOptions))
+// const cors = require('cors')
+// app.use(cors())
 app.use((req, res, next) => {
     res.append('Access-Control-Allow-Origin', ['*']);
     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
