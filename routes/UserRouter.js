@@ -13,7 +13,7 @@ router.post('/createUser', async (req, res) => {
     }
     await new User(userData).save()
   }   catch(error) {
-    console.error(error)
+    console.log(error)
   }
   })
 
