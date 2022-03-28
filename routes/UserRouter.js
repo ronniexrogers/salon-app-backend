@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/User')
+const cors = require('cors')
+
+router.options('/createUser', cors())
 
 router.post('/createUser', async (req, res) => {
     try {
