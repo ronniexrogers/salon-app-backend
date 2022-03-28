@@ -6,14 +6,9 @@ const util = require('util')
 const unlinkFile = util.promisify(fs.unlink)
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
-const imageController = require('../controllers/imageController')
 const Appointment = require('../models/Appointment')
 
-
-const { google0authHandler } = require('../controllers/SessionController')
 const { uploadFile, downloadFile } = require('../s3')
-const { default: axios } = require('axios')
-
 
 router.get('/:key', (req, res) => {
     const key = req.params.key
@@ -64,6 +59,5 @@ router.delete('/:id', async (req, res, next) => {
     next(err)
   }
 })
-
 
 module.exports = router

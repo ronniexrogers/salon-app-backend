@@ -1,7 +1,6 @@
 const config = require('config')
 const axios = require('axios')
 const qs = require('qs')
-const res = require('express/lib/response')
 
     const getGoogle0AuthTokens = async (code) => {
     const url = 'https://oauth2.googleapis.com/token'

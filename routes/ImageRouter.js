@@ -8,11 +8,7 @@ const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const Image = require('../models/Image')
 
-
-const { google0authHandler } = require('../controllers/SessionController')
 const { uploadFile, downloadFile } = require('../s3')
-const { default: axios } = require('axios')
-
 
 router.get('/:key', (req, res) => {
     const key = req.params.key
@@ -27,7 +23,6 @@ router.post('/', upload.single('image'), async (req, res) => {
   const result = await uploadFile(file)
   unlinkFile(file.path)
   console.log(result)
-  const description = req.body.description
   const photoData = {
     imagePath: result.Location,
     description: req.body.description,
