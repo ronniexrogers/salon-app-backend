@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/User')
+const cors = require('cors')
 
-router.post('/createUser', async (req, res) => {
+router.post('/createUser', cors(), async (req, res) => {
     try {
       const userData = {
       firstName: req.body.firstName,

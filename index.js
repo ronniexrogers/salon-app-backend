@@ -18,11 +18,11 @@ app.use((err, req, res, next) => {
     res.status(statusCode).send(message)
 })
 
-app.use('/api/appointments', cors(), router)
+app.use('/api/appointments', router)
 
-app.use('/api/users', cors(), userRouter)
+app.use('/api/users', userRouter)
 
-app.use('/api/salonPhotos', cors(), imageRouter)
+app.use('/api/salonPhotos', imageRouter)
 
 app.listen(app.get('port'), () => {
 	console.log(`✅ PORT: ${app.get('port')} 🌟`)
