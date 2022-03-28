@@ -9,9 +9,10 @@ const userRouter = require('./routes/UserRouter')
 const imageRouter = require('./routes/ImageRouter')
 const corsOptions = {
     origin: 'https://denisse-morales.netlify.app',
-    optionsSuccessStatus: 200
+    optionsSuccessStatus: 200,
+    credentials: true 
   }
-app.use(cors({ credentials: true }))
+app.use(cors(corsOptions))
 
 app.set('port', process.env.PORT)
 app.use(express.json())
