@@ -7,8 +7,24 @@ const unlinkFile = util.promisify(fs.unlink)
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const Appointment = require('../models/Appointment')
+const nodemailer = require('nodemailer')
 
 const { uploadFile, downloadFile } = require('../s3')
+const transporter = nodemailer.createTransport({
+  service: "yahoo",
+  auth: {
+    user: "denisse_morales_application@yahoo.com",
+    pass: "BaXtEr0605"
+  }
+})
+
+const options = {
+  from: "denisse_morales_application@yahoo.com",
+  to: "ronniexrogers@yahoo.com",
+  subject: "New appointment created!",
+  text: "Check your site! Someone created an appointment."
+}
+
 
 router.get('/:key', (req, res) => {
     const key = req.params.key
@@ -18,6 +34,15 @@ router.get('/:key', (req, res) => {
   
 router.post('/createAppointment', upload.single('image'), async (req, res, next) => {
   try {
+
+    transporter.sendMail(options, function (err, info) {
+      if(err) {
+        console.log(err)
+        return
+      }
+      console.log(info.response)
+    })
+
     const file = req.file
     console.log(file)
     const result = await uploadFile(file)
