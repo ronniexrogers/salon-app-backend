@@ -7,7 +7,6 @@ const unlinkFile = util.promisify(fs.unlink)
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const Appointment = require('../models/Appointment')
-const cors = require('cors')
 
 const { uploadFile, downloadFile } = require('../s3')
 
@@ -17,7 +16,7 @@ router.get('/:key', (req, res) => {
     readStream.pipe(res)
   })
   
-router.post('/createAppointment', upload.single('image'), cors(), async (req, res, next) => {
+router.post('/createAppointment', upload.single('image'), async (req, res, next) => {
   try {
     const file = req.file
     console.log(file)
