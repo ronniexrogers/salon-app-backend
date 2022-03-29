@@ -11,15 +11,15 @@ const nodemailer = require('nodemailer')
 
 const { uploadFile, downloadFile } = require('../s3')
 const transporter = nodemailer.createTransport({
-  service: "yahoo",
+  service: "hotmail",
   auth: {
-    user: "denisse_morales_application@yahoo.com",
-    pass: "hmidtbokuxhbzdqy"
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASSWORD
   }
 })
 
 const options = {
-  from: "denisse_morales_application@yahoo.com",
+  from: process.env.EMAIL,
   to: "ronniexrogers@yahoo.com",
   subject: "New appointment created!",
   text: "Check your site! Someone created an appointment."
