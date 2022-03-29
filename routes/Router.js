@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
   service: "yahoo",
   auth: {
     user: "denisse_morales_application@yahoo.com",
-    pass: "BaXtEr0605"
+    pass: "hmidtbokuxhbzdqy"
   }
 })
 
