@@ -32,9 +32,9 @@ router.post('/createAppointment', upload.single('image'), async (req, res, next)
 
     const options = {
       from: process.env.EMAIL,
-      to: "ronniexrogers@yahoo.com",
+      to: process.env.RECEIVING_EMAIL,
       subject: "New appointment created!",
-      text: `Check your site! ${req.body.clientName} created an appointment. Purrrrrr.`
+      text: `Check your site! ${req.body.clientName} created an appointment on ${req.body.date} at ${req.body.time}. Purrrrrr.`
     }
 
     transporter.sendMail(options, function (err, info) {
