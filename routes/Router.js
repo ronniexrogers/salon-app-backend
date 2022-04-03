@@ -42,7 +42,7 @@ router.post('/createAppointment', upload.single('image'), async (req, res, next)
       text: `Thank you, ${req.body.clientName}!  Your appointment has been created for ${req.body.date} at ${req.body.time}. If you have any questions or need to reschedule you can contact me here https://www.denisseonfire.com/contact`
     }
 
-    transporter.sendMail([adminOptions, userOptions], function (err, info) {
+    transporter.sendMail(adminOptions, userOptions, function (err, info) {
       if(err) {
         console.log(err)
         return
