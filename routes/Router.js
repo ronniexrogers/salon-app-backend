@@ -30,14 +30,29 @@ router.get('/:key', (req, res) => {
 router.post('/createAppointment', upload.single('image'), async (req, res, next) => {
   try {
 
-    const options = {
+    const adminOptions = {
       from: process.env.EMAIL,
       to: process.env.RECEIVING_EMAIL,
       subject: "New appointment created!",
       text: `Check your site! ${req.body.clientName} created an appointment on ${req.body.date} at ${req.body.time}. Purrrrrr. https://www.denisseonfire.com/`
     }
 
-    transporter.sendMail(options, function (err, info) {
+    const userOptions = {
+      from: process.env.EMAIL,
+      to: req.body.email,
+      subject: "Thank you for booking your appointment!",
+      text: `Thank you, ${req.body.clientName}!  Your appointment has been created for ${req.body.date} at ${req.body.time}. If you have any questions or need to reschedule you can contact me here https://www.denisseonfire.com/contact`
+    }
+
+    transporter.sendMail(adminOptions, function (err, info) {
+      if(err) {
+        console.log(err)
+        return
+      }
+      console.log(info.response)
+    })
+
+    transporter.sendMail(userOptions, function (err, info) {
       if(err) {
         console.log(err)
         return
