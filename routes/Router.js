@@ -39,7 +39,7 @@ router.post('/createAppointment', upload.single('image'), async (req, res, next)
       from: process.env.EMAIL,
       to: req.body.email,
       subject: "Thank you for booking your appointment!",
-      text: `Thank you, ${req.body.clientName}!  Your appointment has been created for ${req.body.date} at ${req.body.time}. If you have any questions or need to reschedule you can contact me here https://www.denisseonfire.com/contact`
+      text: `Thank you, ${req.body.clientName}!  Your appointment has been created for ${req.body.date} at ${req.body.time}. If you have any questions or need to reschedule you can contact me here https://www.denisseonfire.com/contact. Note, don't reply to this email as this account is not monitored.`
     }
 
     transporter.sendMail(adminOptions, function (err, info) {
