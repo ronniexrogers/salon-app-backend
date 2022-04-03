@@ -8,7 +8,8 @@ const AppointmentSchema = new mongoose.Schema({
 	number: String,
     description: String,
     imagePath: String,
-    email: String
+    email: String,
+    googleId: String
 })
 
 // instantiate the model, calling it "Image" and with the schema we just made
