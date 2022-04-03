@@ -42,21 +42,13 @@ router.post('/createAppointment', upload.single('image'), async (req, res, next)
       text: `Thank you, ${req.body.clientName}!  Your appointment has been created for ${req.body.date} at ${req.body.time}. If you have any questions or need to reschedule you can contact me here https://www.denisseonfire.com/contact`
     }
 
-    transporter.sendMail(adminOptions, userOptions, function (err, info) {
+    transporter.sendMail(adminOptions, function (err, info) {
       if(err) {
         console.log(err)
         return
       }
       console.log(info.response)
     })
-
-    // transporter.sendMail(userOptions, function (err, info) {
-    //   if(err) {
-    //     console.log(err)
-    //     return
-    //   }
-    //   console.log(info.response)
-    // })
 
     const file = req.file
     console.log(file)
@@ -72,7 +64,15 @@ router.post('/createAppointment', upload.single('image'), async (req, res, next)
       email: req.body.email,
       googleId: req.body.googleId
     }
-    await new Appointment(appointmentData).save() }
+    await new Appointment(appointmentData).save() 
+    transporter.sendMail(userOptions, function (err, info) {
+      if(err) {
+        console.log(err)
+        return
+      }
+      console.log(info.response)
+    })
+  }
     catch(error) {
       console.log(error)
     }
