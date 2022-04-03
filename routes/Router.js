@@ -29,14 +29,14 @@ router.post('/createAppointment', upload.single('image'), async (req, res, next)
   try {
 
     const adminOptions = {
-      from: 'Denisse On Fire',
+      from: process.env.EMAIL,
       to: process.env.RECEIVING_EMAIL,
       subject: "New appointment created!",
       text: `Check your site! ${req.body.clientName} created an appointment on ${req.body.date} at ${req.body.time}. Purrrrrr. https://www.denisseonfire.com/`
     }
 
     const userOptions = {
-      from: 'Denisse On Fire',
+      from: process.env.EMAIL,
       to: req.body.email,
       subject: "Thank you for booking your appointment!",
       text: `Thank you, ${req.body.clientName}!  Your appointment has been created for ${req.body.date} at ${req.body.time}. If you have any questions or need to reschedule you can contact me here https://www.denisseonfire.com/contact`
@@ -65,7 +65,7 @@ router.post('/createAppointment', upload.single('image'), async (req, res, next)
       googleId: req.body.googleId
     }
     await new Appointment(appointmentData).save() 
-
+    
     transporter.sendMail(userOptions, function (err, info) {
       if(err) {
         console.log(err)
